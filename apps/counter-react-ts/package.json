@@ -1,0 +1,93 @@
+{
+  "name": "counter-react-ts",
+  "version": "0.9.0-alpha.8",
+  "private": true,
+  "homepage": "https://github.com/cefn/watchable/tree/main/apps/counter-react-ts#readme",
+  "bugs": {
+    "url": "https://github.com/cefn/watchable/issues",
+    "email": "watchable@cefn.com"
+  },
+  "repository": "github:cefn/watchable",
+  "license": "MIT",
+  "author": "Cefn Hoile <github.com@cefn.com> (https://cefn.com)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:bundle": "run-s build preview",
+    "build": "wireit",
+    "preview": "vite preview",
+    "test:unit": "vitest run",
+    "test:dev": "SERVER=http://localhost:5173 run-p --race dev test:server",
+    "test:dev:bundle": "SERVER=http://localhost:4173 run-p --race dev:bundle test:server",
+    "test:server": "wait-on --config waitOnConfig.json ${SERVER} && playwright test",
+    "test": "wireit",
+    "lint": "wireit"
+  },
+  "dependencies": {
+    "@watchable/store": "1.0.0-alpha.7",
+    "@watchable/store-react": "1.0.0-alpha.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.32.3",
+    "@types/react": "^18.0.34",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-legacy": "^4.0.2",
+    "@vitejs/plugin-react": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "playwright-chromium": "^1.32.3",
+    "typescript": "^5.0.4",
+    "vite": "^4.2.1",
+    "wait-on": "^7.0.1",
+    "wireit": "^0.9.5"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [],
+      "command": "tsc --build && vite build",
+      "files": [
+        "src/**/*",
+        "vite.config.ts",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "./dist"
+      ]
+    },
+    "test": {
+      "dependencies": [
+        "build"
+      ],
+      "command": "run-s test:unit test:dev:bundle",
+      "files": [
+        "src/**/*",
+        "test/**/*",
+        "index.html",
+        "playwright.config.ts",
+        "tsconfig.json",
+        "vite.config.ts",
+        "waitOnConfig.json"
+      ],
+      "output": [
+        "coverage",
+        "playwright-report"
+      ]
+    },
+    "lint": {
+      "command": "eslint -c .eslintrc.cjs .",
+      "files": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.jsx",
+        "!dist/**/*",
+        "!coverage/**/*"
+      ],
+      "output": [],
+      "dependencies": [
+        "build"
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "counter-react-js",
+  "version": "0.9.0-alpha.8",
+  "private": true,
+  "homepage": "https://github.com/cefn/watchable/tree/main/apps/counter-react-js#readme",
+  "bugs": {
+    "url": "https://github.com/cefn/watchable/issues",
+    "email": "watchable@cefn.com"
+  },
+  "repository": "github:cefn/watchable",
+  "license": "MIT",
+  "author": "Cefn Hoile <github.com@cefn.com> (https://cefn.com)",
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "dev": "vite",
+    "lint": "wireit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@watchable/store": "1.0.0-alpha.7",
+    "@watchable/store-react": "1.0.0-alpha.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-react": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-legacy": "^4.0.2",
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.2.1",
+    "wireit": "^0.9.5"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [],
+      "command": "vite build",
+      "files": [
+        "vite.config.ts",
+        "src/**/*"
+      ],
+      "output": [
+        "./dist"
+      ]
+    },
+    "lint": {
+      "command": "eslint -c .eslintrc.cjs .",
+      "files": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.jsx",
+        "!dist/**/*",
+        "!coverage/**/*"
+      ],
+      "output": [],
+      "dependencies": [
+        "build"
+      ]
+    }
+  }
+}

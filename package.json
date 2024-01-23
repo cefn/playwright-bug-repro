@@ -1,0 +1,36 @@
+{
+  "name": "playwright-bug-repro",
+  "version": "0.0.0",
+  "private": true,
+  "repository": "https://github.com/cefn/watchable",
+  "license": "MIT",
+  "author": "Cefn Hoile <github.com@cefn.com> (https://cefn.com)",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "wireit"
+  },
+  "wireit": {
+    "test": {
+      "dependencies": [
+        "./apps/counter-preact-ts:test",
+        "./apps/counter-react-ts:test",
+        "./apps/counter-react-ts-edit:test",
+        "./apps/counter-react-ts-edit-context:test"
+      ]
+    }
+  },
+  "devDependencies": {
+    "prettier": "^2.8.0",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": "^20.10.0",
+    "npm": "^10"
+  },
+  "dependencies": {
+    "wireit": "^0.14.3"
+  }
+}

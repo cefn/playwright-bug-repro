@@ -1,3 +1,12 @@
+# CH ignore vscode metadata
+/.vscode
+# CH ignore wireit cache
+.wireit
+# CH ignore bundle profiling asset
+analice.html
+# CH don't commit typedoc output
+/api
+
 # Logs
 logs
 *.log
